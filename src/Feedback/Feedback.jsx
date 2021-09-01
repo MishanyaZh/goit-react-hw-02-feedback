@@ -1,6 +1,8 @@
 import { Component } from 'react';
-
-import css from './Feedback.module.css';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions.jsx';
+import Statistics from '../Statistics/Statistics.jsx';
+import Section from '../Section/Section.jsx';
+// import css from './Feedback.module.css';
 
 class Feedback extends Component {
   state = {
@@ -8,18 +10,13 @@ class Feedback extends Component {
     neutral: 0,
     bad: 0,
   };
-
   handleGood = () => {
-    this.setState(prevState => {
-      const { good } = prevState;
-      return {
-        good: good + 1,
-      };
-    });
+    this.setState(prevState => ({
+      good: prevState.good + 1,
+    }));
     this.countTotalFeedback();
     this.countPositiveFeedbackPercentage();
   };
-
   handleNeutral = () => {
     this.setState(prevState => ({
       neutral: prevState.neutral + 1,
@@ -27,7 +24,6 @@ class Feedback extends Component {
     this.countTotalFeedback();
     this.countPositiveFeedbackPercentage();
   };
-
   handleBad = () => {
     this.setState(prevState => ({
       bad: prevState.bad + 1,
@@ -35,68 +31,37 @@ class Feedback extends Component {
     this.countTotalFeedback();
     this.countPositiveFeedbackPercentage();
   };
-
   countTotalFeedback = () => {
-    const curstate = this.state.bad + this.state.good + this.state.neutral;
-    return curstate;
+    const totalFeedback = this.state.bad + this.state.good + this.state.neutral;
+    return totalFeedback;
   };
-
   countPositiveFeedbackPercentage = () => {
-    const positive = this.state.good;
-    const curstate = this.state.bad + this.state.good + this.state.neutral;
-
-    const proc = (positive / curstate) * 100;
-
-    console.log(proc);
-    return proc;
+    const positiveFeedback = this.state.good;
+    const positivePercent = Math.round(
+      (positiveFeedback / this.countTotalFeedback()) * 100,
+    );
+    return positivePercent;
   };
-
   render() {
     return (
       <div>
-        <div className={css.containerF}>
-          <span className={css.titleF}>Please leave feedback</span>
-          <ul className={css.listF}>
-            <li>
-              <button type="button" onClick={this.handleGood}>
-                Good
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={this.handleNeutral}>
-                Neutral
-              </button>
-            </li>
-            <li>
-              <button type="button" onClick={this.handleBad}>
-                Bad
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div className={css.containerS}>
-          <span className={css.titleS}>Statistics</span>
-          <ul>
-            <li>
-              <span>Good: {this.state.good}</span>
-            </li>
-            <li>
-              <span>Neutral: {this.state.neutral}</span>
-            </li>
-            <li>
-              <span>Bad: {this.state.bad}</span>
-            </li>
-          </ul>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            onHandleGood={this.handleGood}
+            onHandleNeutral={this.handleNeutral}
+            onHandleBad={this.handleBad}
+          />
+        </Section>
 
-          <ul>
-            <li>
-              <span>Total: {this.countTotalFeedback()}</span>
-            </li>
-            <li>
-              Positive feedback: {this.countPositiveFeedbackPercentage()}%
-            </li>
-          </ul>
-        </div>
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            countTotalFeedback={this.countTotalFeedback()}
+            countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }
