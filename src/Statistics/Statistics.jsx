@@ -9,7 +9,7 @@ function Statistics({
   countPositiveFeedbackPercentage,
 }) {
   return countTotalFeedback !== 0 ? (
-    <Container>
+    <Container eventType={countPositiveFeedbackPercentage}>
       <ul>
         <li>
           <span>Good: {good}</span>
