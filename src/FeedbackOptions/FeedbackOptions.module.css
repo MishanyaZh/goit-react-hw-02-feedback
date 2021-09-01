@@ -1,0 +1,13 @@
+.containerF {
+  background: rgb(162, 253, 201);
+}
+
+.titleF {
+  color: rgb(20, 20, 20);
+}
+.listF {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  list-style: none;
+}
