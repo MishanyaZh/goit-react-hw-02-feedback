@@ -1,4 +1,5 @@
-import css from './Statistics.module.css';
+import Notification from '../Notification/Notification';
+import { Container } from './Statistics.styled';
 
 function Statistics({
   good,
@@ -7,9 +8,8 @@ function Statistics({
   countTotalFeedback,
   countPositiveFeedbackPercentage,
 }) {
-  return (
-    <div className={css.containerS}>
-      {/* <span className={css.titleS}>Statistics</span> */}
+  return countTotalFeedback !== 0 ? (
+    <Container>
       <ul>
         <li>
           <span>Good: {good}</span>
@@ -28,7 +28,9 @@ function Statistics({
         </li>
         <li>Positive feedback: {countPositiveFeedbackPercentage}%</li>
       </ul>
-    </div>
+    </Container>
+  ) : (
+    <Notification message="No feedback given" />
   );
 }
 

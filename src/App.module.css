@@ -1,4 +1,7 @@
 .appContainer {
-  padding: 10px;
-  background: rgb(247, 214, 214);
+  width: 300px;
+  padding: 20px;
+  background: rgb(224, 210, 210);
+  border: 1px solid crimson;
+  border-radius: 10px;
 }
