@@ -10,31 +10,16 @@ class Feedback extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
+
+  leaveFeedback = ({ option }) => {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
   };
-  handleNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
-  };
-  handleBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
-  };
+
   countTotalFeedback = () => {
     const totalFeedback = this.state.bad + this.state.good + this.state.neutral;
     return totalFeedback;
   };
+
   countPositiveFeedbackPercentage = () => {
     const positiveFeedback = this.state.good;
     const positivePercent = Math.round(
@@ -42,14 +27,14 @@ class Feedback extends Component {
     );
     return positivePercent;
   };
+
   render() {
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            onHandleGood={this.handleGood}
-            onHandleNeutral={this.handleNeutral}
-            onHandleBad={this.handleBad}
+            onLeaveFeedback={this.leaveFeedback}
+            options={this.state}
           />
         </Section>
 
@@ -68,3 +53,30 @@ class Feedback extends Component {
 }
 
 export default Feedback;
+
+// handleGood = () => {
+//   this.setState(prevState => ({
+//     good: prevState.good + 1,
+//   }));
+//   this.countTotalFeedback();
+//   this.countPositiveFeedbackPercentage();
+// };
+
+// handleNeutral = () => {
+//   this.setState(prevState => ({
+//     neutral: prevState.neutral + 1,
+//   }));
+//   this.countTotalFeedback();
+//   this.countPositiveFeedbackPercentage();
+// };
+// handleBad = () => {
+//   this.setState(prevState => ({
+//     bad: prevState.bad + 1,
+//   }));
+//   this.countTotalFeedback();
+//   this.countPositiveFeedbackPercentage();
+// };
+
+// onHandleGood={this.handleGood}
+// onHandleNeutral={this.handleNeutral}
+// onHandleBad={this.handleBad}
