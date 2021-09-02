@@ -2,7 +2,7 @@ import { Component } from 'react';
 import FeedbackOptions from '../FeedbackOptions/FeedbackOptions.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 import Section from '../Section/Section.jsx';
-// import css from './Feedback.module.css';
+import { MainContainer } from './Feedback.styled.jsx';
 
 class Feedback extends Component {
   state = {
@@ -30,7 +30,7 @@ class Feedback extends Component {
 
   render() {
     return (
-      <div>
+      <MainContainer>
         <Section title="Please leave feedback">
           <FeedbackOptions
             onLeaveFeedback={this.leaveFeedback}
@@ -47,36 +47,9 @@ class Feedback extends Component {
             countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
           />
         </Section>
-      </div>
+      </MainContainer>
     );
   }
 }
 
 export default Feedback;
-
-// handleGood = () => {
-//   this.setState(prevState => ({
-//     good: prevState.good + 1,
-//   }));
-//   this.countTotalFeedback();
-//   this.countPositiveFeedbackPercentage();
-// };
-
-// handleNeutral = () => {
-//   this.setState(prevState => ({
-//     neutral: prevState.neutral + 1,
-//   }));
-//   this.countTotalFeedback();
-//   this.countPositiveFeedbackPercentage();
-// };
-// handleBad = () => {
-//   this.setState(prevState => ({
-//     bad: prevState.bad + 1,
-//   }));
-//   this.countTotalFeedback();
-//   this.countPositiveFeedbackPercentage();
-// };
-
-// onHandleGood={this.handleGood}
-// onHandleNeutral={this.handleNeutral}
-// onHandleBad={this.handleBad}

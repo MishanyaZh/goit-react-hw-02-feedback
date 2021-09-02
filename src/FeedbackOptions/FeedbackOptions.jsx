@@ -1,38 +1,31 @@
-import css from './FeedbackOptions.module.css';
+import PropTypes from 'prop-types';
+import { List, Button } from './FeedbackOptions.styled';
 
 function FeedbackOptions({ onLeaveFeedback, options }) {
   return (
-    <div className={css.containerF}>
-      <ul className={css.listF}>
+    <div>
+      <List>
         {Object.keys(options).map(option => (
           <li key={option}>
-            <button type="button" onClick={() => onLeaveFeedback({ option })}>
+            <Button type="button" onClick={() => onLeaveFeedback({ option })}>
               {option}
-            </button>
+            </Button>
           </li>
         ))}
-      </ul>
+      </List>
     </div>
   );
 }
 
 export default FeedbackOptions;
 
-// <li>
-//   <button type="button" onClick={onHandleGood}>
-//     Good
-//   </button>
-// </li>
-// <li>
-//   <button type="button" onClick={onHandleNeutral}>
-//     Neutral
-//   </button>
-// </li>
-// <li>
-//   <button type="button" onClick={onHandleBad}>
-//     Bad
-//   </button>
-// </li>
-// onHandleGood,
-// onHandleNeutral,
-// onHandleBad,
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+  option: PropTypes.PropTypes.arrayOf(
+    PropTypes.exact({
+      Good: PropTypes.string.isRequired,
+      Neutral: PropTypes.string.isRequired,
+      Bad: PropTypes.number.isRequired,
+    }),
+  ),
+};
