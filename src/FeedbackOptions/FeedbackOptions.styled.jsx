@@ -9,14 +9,15 @@ export const List = styled.ul`
 `;
 
 export const Button = styled.button`
-  width: 70px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   border-radius: 5px;
   transition-duration: 0.1s;
-  box-shadow: 1px 1px 11px 1px #797a7c;
+  box-shadow: inset 1px 1px 11px 1px #797a7c;
+  cursor: pointer;
 
   &:active {
     transform: scale(1.1);
