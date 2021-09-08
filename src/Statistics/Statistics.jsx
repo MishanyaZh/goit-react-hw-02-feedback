@@ -10,11 +10,11 @@ function Statistics(props) {
     countTotalFeedback,
     countPositiveFeedbackPercentage,
   } = props;
-  const notFeadback = !countTotalFeedback;
   return (
     <Container eventType={countPositiveFeedbackPercentage}>
-      {notFeadback && <Notification message="No feedback given" />}
-      {!notFeadback && (
+      {!countTotalFeedback && <Notification message="No feedback given" />}
+
+      {countTotalFeedback > 0 && (
         <List>
           <li>
             <span>Good: {good}</span>
